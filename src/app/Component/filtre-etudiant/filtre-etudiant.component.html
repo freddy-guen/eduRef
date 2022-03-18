@@ -1,0 +1,51 @@
+<form [formGroup]="reactiveForm" name="filtre">
+  <div class="row">
+    <div  class="form-group col-md-1" >
+      <label for="filtreAnnee" >Année</label>
+      <select [(ngModel)]="anneeFilter"  name="filtreAnnee" formControlName="filtreAnnee" id="filtreAnnee" class="form-select form-select-sm" >
+        <option *ngFor="let annee of annees" value="{{annee.valeur}}">{{annee.valeur}}</option>
+      </select>
+    </div>
+
+    <div *ngIf="anneeFilter!=null" class="form-group col-md-2" >
+      <label for="filtrePar" >Filtrer par : </label>
+      <select [(ngModel)]="firstFilter"  name="filtrePar" formControlName="filtrePar" id="filtrePar" class="form-select form-select-sm" >
+        <option *ngFor="let filtre of filtres" value="{{filtre}}" >{{filtre}}</option>
+      </select>
+    </div>
+
+    <!--Filtre de base : FORMATION-->
+    <div *ngIf="firstFilter=='Formation'" class="form-group col-md-4" >
+      <label for="filtreFormation">Formation</label>
+      <select [(ngModel)]="secondFilter" name="filtreFormation" formControlName="filtreFormation" id="filtreFormation" class="form-select form-select-sm">
+        <option *ngFor="let formation of formations" value="{{formation.nom}}">{{formation.nom}}</option>
+      </select>
+    </div>
+    <div *ngIf="firstFilter=='Formation' && secondFilter!=''" class="form-group col-md-2">
+      <label for="filtreFormationClasse">Classe</label>
+      <select [(ngModel)]="thirdFilter" name="filtreFormationClasse" formControlName="filtreFormationClasse" id="filtreFormationClasse" class="form-select form-select-sm" >
+        <option *ngFor="let niveau of niveaux" value="{{niveau.nom}}">{{niveau.nom}}</option>
+      </select>
+    </div>
+
+    <!--Filtre de base : CLASSE/NIVEAU-->
+    <div *ngIf="firstFilter=='Classe'" class="form-group col-md-2">
+      <label for="filtreClasse">Classe</label>
+      <select [(ngModel)]="thirdFilter" name="filtreClasse" formControlName="filtreClasse" id="filtreClasse" class="form-select form-select-sm" >
+        <option *ngFor="let niveau of niveaux" value="{{niveau.nom}}">{{niveau.nom}}</option>
+      </select>
+    </div>
+
+    <!--Filtre de base : NOM-->
+    <div *ngIf="firstFilter=='Nom'" class="form-group col-md-2" >
+      <label for="filtreNom">Nom</label>
+      <input [(ngModel)]="fourthFilter" type="text" class="form-control form-control-sm" name="filtreNom" formControlName="filtreNom" id="filtreNom"  placeholder="Entrer le nom ici" >
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-2">
+      <button class="btn btn-primary" (click)="getAlEtudiants()">Rechercher</button>
+    </div>
+  </div>
+</form>
+
