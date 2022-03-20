@@ -1,17 +1,27 @@
-<table id="table"  data-show-header="true" data-pagination="true"
-       data-id-field="name"
-       data-page-list="[5, 10, 25, 50, 100, ALL]"
-       data-page-size="5">
+
+<h5 class="text-center">Liste des étudiants</h5>
+
+<table class="table table-hover">
   <thead>
-  <tr>
-    <th data-field="name" data-formatter="nameFormatter">Name</th>
-    <th data-field="stargazers_count" data-formatter="starsFormatter">Stars</th>
-    <th data-field="forks_count" data-formatter="forksFormatter">Forks</th>
-    <th data-field="description">Description</th>
-  </tr>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Autre Prénom</th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
+    <tr *ngFor="let etudiant of listeEtudiants">
+      <td>{{etudiant.code_etudiant}}</td>
+      <td>{{etudiant.nom_etudiant}}</td>
+      <td>{{etudiant.prenom_etudiant}}</td>
+      <td>{{etudiant.autre_prenom_etudiant}}</td>
+      <td>
+        <button type="button" class="btn btn-info btn-sm">Consulter</button> |
+        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+      </td>
+    </tr>
   </tbody>
 </table>
-
 

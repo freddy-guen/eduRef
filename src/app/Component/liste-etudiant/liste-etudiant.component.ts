@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {EtudiantService} from "../../Service/etudiant.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {Etudiant} from "../../Model/etudiant.model";
 
 
 @Component({
@@ -8,6 +8,9 @@ import {EtudiantService} from "../../Service/etudiant.service";
   styleUrls: ['./liste-etudiant.component.css']
 })
 export class ListeEtudiantComponent implements OnInit {
+
+  @Input() listeEtudiants !: Etudiant[];
+
 
   constructor() { }
 

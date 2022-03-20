@@ -20,7 +20,8 @@ export class FiltreEtudiantComponent implements OnInit {
     filtreFormation: new FormControl(),
     filtreFormationClasse: new FormControl(),
     filtreClasse: new FormControl(),
-    filtreNom: new FormControl()
+    filtreNom: new FormControl(),
+    boutonRechercher: new FormControl()
   });
 
   etudiants : Etudiant[] = [];
@@ -34,10 +35,10 @@ export class FiltreEtudiantComponent implements OnInit {
 
   //variables utilisées pour le binding
   anneeFilter !: number;
-  firstFilter : string = 'Tous';
-  secondFilter : string = 'Toutes';
-  thirdFilter !: string;
-  fourthFilter !: string;
+  firstFilter : string = 'Tous';  //filtrer par
+  secondFilter : string = 'Toutes';  //formation
+  thirdFilter !: string;  //classe
+  fourthFilter !: string; //nom
 
   constructor(
     private etudiantService : EtudiantService
@@ -81,7 +82,87 @@ export class FiltreEtudiantComponent implements OnInit {
     })
   }
 
-  getAlEtudiants() {
+  getAllEtudiants() {
+    if(this.anneeFilter){
+      switch (this.firstFilter) {
+        case "Tous" :
+          return this.getAllEtudiantsByAnnee(this.anneeFilter);
+        case "Formation" :
+          return this.getAllEtudiantsByFormation(this.anneeFilter, this.secondFilter, this.thirdFilter);
+        case "Classe" :
+          return this.getAllEtudiantsByNiveau(this.anneeFilter, this.thirdFilter);
+        case "Nom" :
+          return this.getAllEtudiantsByMotCle(this.anneeFilter, this.fourthFilter);
+      }
+    }
+  }
+
+  getAllEtudiantsByAnnee(annee : number){
+    this.etudiantService.getAllEtudiantsByAnnee(annee).subscribe(
+      (etudiants) => {
+        this.etudiants = etudiants;
+        //Envoie des données au composant père
+        this.sendRequestToData.emit(
+          this.etudiants
+        );
+      },
+      (error) => {
+        alert(`Problème d'accès à  l'API`);
+        console.log(error);
+      }
+    );
+  }
+
+  getAllEtudiantsByFormation(annee : number, formation : string, niveau : string){
+    this.etudiantService.getAllEtudiantsByFormation(annee, formation, niveau).subscribe(
+      (etudiants) => {
+        this.etudiants = etudiants;
+        //Envoie des données au composant père
+        this.sendRequestToData.emit(
+          this.etudiants
+        );
+      },
+      (error) => {
+        alert(`Problème d'accès à  l'API`);
+        console.log(error);
+      }
+    );
+  }
+
+  getAllEtudiantsByNiveau(annee : number, niveau : string){
+    this.etudiantService.getAllEtudiantsByNiveau(annee, niveau).subscribe(
+      (etudiants) => {
+        this.etudiants = etudiants;
+        //Envoie des données au composant père
+        this.sendRequestToData.emit(
+          this.etudiants
+        );
+      },
+      (error) => {
+        alert(`Problème d'accès à  l'API`);
+        console.log(error);
+      }
+    );
+  }
+
+  getAllEtudiantsByMotCle(annee : number, motCle : string){
+    this.etudiantService.getAllEtudiantsByMotCle(annee, motCle).subscribe(
+      (etudiants) => {
+        this.etudiants = etudiants;
+        //Envoie des données au composant père
+        this.sendRequestToData.emit(
+          this.etudiants
+        );
+      },
+      (error) => {
+        alert(`Problème d'accès à  l'API`);
+        console.log(error);
+      }
+    );
+  }
+
+
+  getAll(){
     this.etudiantService.getAllEtudiants().subscribe(
       (etudiants) => {
         this.etudiants = etudiants;

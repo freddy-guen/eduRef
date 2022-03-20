@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Etudiant} from "../../Model/etudiant.model";
 
 @Component({
@@ -13,10 +13,10 @@ export class ConsultationEtudiantComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   getEtudiants(etudiants : Etudiant[]) {
     this.etudiants = etudiants;
-    console.log('Affichage des étudiants chez le père : ',this.etudiants)
   }
 }

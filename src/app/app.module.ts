@@ -16,6 +16,7 @@ import { FiltreEtudiantComponent } from './Component/filtre-etudiant/filtre-etud
 import { ConsultationEtudiantComponent } from './Component/consultation-etudiant/consultation-etudiant.component';
 import { ItemEtudiantComponent } from './Component/item-etudiant/item-etudiant.component';
 import {HttpClientModule} from "@angular/common/http";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
     ROUTING
   ],
   providers: [],

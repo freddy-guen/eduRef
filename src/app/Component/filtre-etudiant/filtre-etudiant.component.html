@@ -1,4 +1,5 @@
-<form [formGroup]="reactiveForm" name="filtre">
+
+<form [formGroup]="reactiveForm" #ngForm="ngForm" name="filtre">
   <div class="row">
     <div  class="form-group col-md-1" >
       <label for="filtreAnnee" >Année</label>
@@ -43,9 +44,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="form-group col-md-2">
-      <button class="btn btn-primary" (click)="getAlEtudiants()">Rechercher</button>
+    <div class="form-group col-md-6">
+      <button class="btn btn-primary d-inline" formControlName="boutonRechercher" ngDefaultControl (click)="getAllEtudiants()" >Rechercher</button>
+      <p class="annee-error d-inline" *ngIf="reactiveForm.controls['filtreAnnee'].pristine && ngForm.submitted"> Veuillez selectionner une année.</p>
     </div>
+
   </div>
 </form>
 

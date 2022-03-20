@@ -1,3 +1,4 @@
+import {EtudiantNiveauFormation} from "./etudiant-niveau-formation.model";
 
 export interface Etudiant {
 
@@ -5,5 +6,5 @@ export interface Etudiant {
   nom_etudiant : string;
   prenom_etudiant : string;
   autre_prenom_etudiant : string;
-
+  infos : EtudiantNiveauFormation[];
 }
