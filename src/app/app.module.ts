@@ -17,6 +17,8 @@ import { ConsultationEtudiantComponent } from './Component/consultation-etudiant
 import { ItemEtudiantComponent } from './Component/item-etudiant/item-etudiant.component';
 import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgxPaginationModule} from "ngx-pagination";
+import { DetailEtudiantComponent } from './Component/detail-etudiant/detail-etudiant.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     AddEtudiantComponent,
     FiltreEtudiantComponent,
     ConsultationEtudiantComponent,
-    ItemEtudiantComponent
+    ItemEtudiantComponent,
+    DetailEtudiantComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    NgxPaginationModule,
     ROUTING
   ],
   providers: [],

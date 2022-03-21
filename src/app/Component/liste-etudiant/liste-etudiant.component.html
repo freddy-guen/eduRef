@@ -12,16 +12,36 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let etudiant of listeEtudiants">
+    <tr *ngFor="let etudiant of listeEtudiants | paginate:{
+      itemsPerPage : tableSize,
+      currentPage : page,
+      totalItems : count}; let i = index ">
       <td>{{etudiant.code_etudiant}}</td>
       <td>{{etudiant.nom_etudiant}}</td>
       <td>{{etudiant.prenom_etudiant}}</td>
       <td>{{etudiant.autre_prenom_etudiant}}</td>
       <td>
-        <button type="button" class="btn btn-info btn-sm">Consulter</button> |
+        <button type="button" class="btn btn-info btn-sm" (click)="consulter(etudiant)">Consulter</button> |
         <button type="button" class="btn btn-warning btn-sm">Modifier</button>
       </td>
     </tr>
   </tbody>
 </table>
+<!--Bloc de Pagination-->
+<div class="row">
+  <div class="col-md-11">
+    <pagination-controls
+      previousLabel="Suiv"
+      nextLabel="Préc"
+      (pageChange)="onTableDatachange($event)"
+    >
+    </pagination-controls>
+  </div>
+  <div class="col">
+    <select class="form-select w-75" (change)="onTableSizeChange($event)">
+      <option *ngFor="let size of tableSizes">{{size}}</option>
+    </select>
+  </div>
+</div>
+
 
